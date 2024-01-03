@@ -1,0 +1,25 @@
+.main{
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+}
+.main p{
+  margin: 20px 20px 20px;
+  text-decoration: none;
+}
+.main section{
+  margin: 20px 20px 20px;
+}
+.main section span{
+  text-decoration: none;
+  color: black;
+}
+.main section span:first-child{
+  padding-right: 20px;
+}
+.main section span:last-child{
+  border: 1px solid #52C41A;
+  border-radius: 5px;
+  padding: 3px;
+  color: #52C41A;
+}

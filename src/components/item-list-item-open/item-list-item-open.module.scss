@@ -1,0 +1,122 @@
+$titleColor: #1890FF;
+.prime{
+  background-color: #FFFFFF;
+  margin: 30px 50px;
+  padding: 20px;
+
+}
+.textZone{
+}
+.likes{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+}
+.overv{
+  margin: 10px 0;
+}
+.userInfoZone{
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+}
+.userInfoZone image{
+
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title h2{
+  color: $titleColor;
+  margin: 0;
+  font-weight: 400;
+}
+.title p{
+  align-self: center;
+  margin-left: 10px;
+}
+.tag{
+  border: 1px solid black;
+  width: 30px;
+  padding: 5px;
+  border-radius: 2px;
+  margin: 5px 0;
+}
+$titleColor: #1890FF;
+.main{
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 150px;
+
+}
+//.text{
+//  //white-space: pre-wrap;
+//  white-space: pre-line;
+//}
+.textZone{
+  width: fit-content;
+}
+.likes{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+}
+.overv{
+  margin: 10px 0;
+}
+.userInfoZone{
+  display: flex;
+  flex-direction: row;
+  padding-left: 20px;
+  width: 40%;
+  justify-content: end;
+
+}
+.authorName{
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.authorDate{
+  margin-top: 0;
+  color: gray;
+  font-weight: lighter;
+}
+.authorImage{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title h2{
+  color: $titleColor;
+  margin: 0;
+  text-decoration: none;
+}
+
+.title p{
+  align-self: center;
+  margin-left: 10px;
+}
+.tagSection{
+  display: flex;
+  flex-direction: row;
+}
+.tag{
+  border: 1px solid black;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 2px;
+  margin: 5px 5px 0 0;
+  font-weight: 400;
+}
