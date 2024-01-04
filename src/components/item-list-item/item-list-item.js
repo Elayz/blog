@@ -6,7 +6,7 @@ import * as actions from '../../actions'
 import logo from './imgs/Vector.svg';
 
 const ItemListItem = ({ pageDataFoo, item }) => {
-    const { index, author, description, favoritesCount, tagList, title, createdAt } = item
+    const { index, author, description, favoritesCount, tagList, title, createdAt, slug } = item
 
     const tags = tagList.map((tag) => (
         <div key={Math.floor(Math.random() * 10000)}>
@@ -23,13 +23,13 @@ const ItemListItem = ({ pageDataFoo, item }) => {
                 <div className={classes.textZone}>
                     <div className={classes.title}>
                         <div>
-                            <Link onClick={() => pageDataFoo(item)} to={`/list/${index}`}>
+                            <Link onClick={() => pageDataFoo(item)} to={`/articles/${slug}`}>
                                 <h2>{title}</h2>
                             </Link>
                         </div>
                         <div className={classes.likes}>
                             <img src={logo} alt="aGde"/>
-                            <p>{favoritesCount}</p>
+                            <p className={classes.likesP}>{favoritesCount}</p>
                         </div>
                     </div>
                     <div className={classes.tagSection}>

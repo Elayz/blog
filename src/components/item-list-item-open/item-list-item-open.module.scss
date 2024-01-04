@@ -7,12 +7,7 @@ $titleColor: #1890FF;
 }
 .textZone{
 }
-.likes{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px;
-}
+
 .overv{
   margin: 10px 0;
 }
@@ -119,4 +114,14 @@ $titleColor: #1890FF;
   border-radius: 2px;
   margin: 5px 5px 0 0;
   font-weight: 400;
+}
+.likes{
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+  align-items: start;
+}
+.likesP{
+  margin: 0 20px 40px 5px;
+  font-size: 12px;
 }

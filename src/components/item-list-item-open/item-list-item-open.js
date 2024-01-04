@@ -12,7 +12,8 @@ const ItemListItemOpen = ({ pageData }) => {
         // console.log(pageData)
         const newBody = body.split('\\n')
         const elements = newBody.map((item) => (
-            <div>
+            <div
+            key={Math.floor(Math.random() * 10000)}>
                 <span>{item}</span>
                 <br/>
             </div>
@@ -39,7 +40,7 @@ const ItemListItemOpen = ({ pageData }) => {
                             <h2>{title}</h2>
                             <div className={classes.likes}>
                                 <img src={logo} alt="aGde"/>
-                                <p>{favoritesCount}</p>
+                                <p className={classes.likesP}>{favoritesCount}</p>
                             </div>
                         </div>
                         <div className={classes.tagSection}>

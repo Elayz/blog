@@ -13,18 +13,6 @@
   flex-grow: 1;
 }
 
-.likes {
-  display: flex;
-  flex-direction: row;
-  margin-left: 5px;
-  align-items: start;
-}
-
-.likes p {
-  margin: 0 20px 40px 20px;
-  font-size: 12px;
-}
-
 .overv {
   margin: 10px 0;
 }
@@ -84,6 +72,18 @@
   border-radius: 2px;
   margin: 5px 5px 0 0;
   font-weight: 400;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  align-items: start;
+}
+
+.likesP {
+  margin: 0 20px 40px 5px;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=item-list-item.module.css.map */

@@ -7,8 +7,10 @@ import {connect} from "react-redux";
 import * as actions from '../../actions'
 import  { BrowserRouter, Route } from "react-router-dom";
 import ItemListItemOpen from "../item-list-item-open/item-list-item-open";
+import Spinn from "../spin/spin";
+import SignUp from "../forms/SignUp/SignUp";
 
-const App = ({ dataToState }) => {
+const App = ({ dataToState, pageData }) => {
     const apiRes = new ApiSevice;
     window.onload = () => {
         apiRes.getRes()
@@ -18,10 +20,11 @@ const App = ({ dataToState }) => {
     };
     return (
         <div className={classes.main}>
+            <SignUp></SignUp>
             <BrowserRouter>
                 <Header></Header>
-                <Route path='/list' exact component={ItemList}></Route>
-                <Route exact path='/list/:id'
+                <Route path='/articles' exact component={ItemList}></Route>
+                <Route exact path='/articles/:id'
                        render={({ match }) => {
                            const { id } = match.params
                            return <ItemListItemOpen itemID={id} />
@@ -34,7 +37,7 @@ const App = ({ dataToState }) => {
 
 const mapStateToProps = (state) => {     //для переменных из стейт
     return {
-        value: state,
+        pageData: state.pageData,
     }
 }
 export default connect(mapStateToProps, actions)(App)

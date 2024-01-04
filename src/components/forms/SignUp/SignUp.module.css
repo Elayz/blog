@@ -1,0 +1,104 @@
+@charset "UTF-8";
+.main {
+  min-height: 300px;
+  width: 250px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 lightgray;
+}
+
+.main h3 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit {
+  background-color: #1890FF;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  color: #FFFFFF;
+}
+
+.submit:active {
+  background-color: #1870FF;
+}
+
+.inputInput {
+  height: 40px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.form p {
+  margin: 5px 0;
+}
+
+.form hr {
+  margin: 20px 0;
+  height: 0;
+}
+
+.checkbox {
+  border-top: 1px solid #595959;
+  color: #595959;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.checkboxError {
+  color: #F5222D;
+  margin-top: 20px;
+  padding: 10px 0;
+  border-top: 1px solid #595959;
+}
+
+.inputInputError {
+  height: 40px;
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+}
+
+.buttomErrorText {
+  color: #F5222D;
+}
+
+.buttomErrorTextDisabled {
+  display: none;
+}
+
+/* Скрываем оригинальный чекбокс */
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Создаем стилизованный флажок */
+.styled-checkbox + label:before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid lightgray; /* Цвет рамки */
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+/* Стили для отмеченного состояния */
+.styled-checkbox:checked + label:before {
+  content: "✔"; /* Unicode галочка */
+  text-align: center;
+  border: 1px solid #1890FF;
+  width: 14px;
+  height: 14px;
+  line-height: 16px;
+  background-color: #1890FF; /* Цвет заливки */
+  color: #fff; /* Цвет галочки */
+}
+
+/*# sourceMappingURL=SignUp.module.css.map */

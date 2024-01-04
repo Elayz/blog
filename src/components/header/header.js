@@ -4,7 +4,7 @@ import  { Link, BrowserRouter } from "react-router-dom";
 
 const Header = () => {
     return (
-            <Link to='/list'>
+            <Link to='/articles'>
                 <div className={classes.main}>
                     <p>Realworld Blog</p>
                     <section>
