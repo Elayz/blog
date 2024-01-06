@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './item-list-item.module.scss'
-import  { Link, BrowserRouter } from "react-router-dom";
+import  { Link } from "react-router-dom";
 import {connect} from "react-redux";
 import * as actions from '../../actions'
 import logo from './imgs/Vector.svg';

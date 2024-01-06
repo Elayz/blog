@@ -7,8 +7,9 @@ import {connect} from "react-redux";
 import * as actions from '../../actions'
 import  { BrowserRouter, Route } from "react-router-dom";
 import ItemListItemOpen from "../item-list-item-open/item-list-item-open";
-import Spinn from "../spin/spin";
 import SignUp from "../forms/SignUp/SignUp";
+import SignIn from "../forms/SiginIn/SiginIn";
+import EditProfile from "../forms/EditProfile/EditProfile";
 
 const App = ({ dataToState, pageData }) => {
     const apiRes = new ApiSevice;
@@ -20,10 +21,12 @@ const App = ({ dataToState, pageData }) => {
     };
     return (
         <div className={classes.main}>
-            <SignUp></SignUp>
             <BrowserRouter>
+                <EditProfile></EditProfile>
                 <Header></Header>
                 <Route path='/articles' exact component={ItemList}></Route>
+                <Route path='/sign-in' exact component={SignIn}></Route>
+                <Route path='/sign-up' exact component={SignUp}></Route>
                 <Route exact path='/articles/:id'
                        render={({ match }) => {
                            const { id } = match.params

@@ -2,14 +2,11 @@ import React from 'react'
 import classes from './item-list-item-open.module.scss'
 import {connect} from "react-redux";
 import * as actions from '../../actions'
-import ReactMarkdown from 'react-markdown';
 import logo from '../item-list-item/imgs/Vector.svg';
 
 const ItemListItemOpen = ({ pageData }) => {
     if (pageData !== null){
-        const br = document.createElement('br');
         const { body, author, description, favoritesCount, tagList, title, createdAt } = pageData
-        // console.log(pageData)
         const newBody = body.split('\\n')
         const elements = newBody.map((item) => (
             <div
@@ -18,11 +15,6 @@ const ItemListItemOpen = ({ pageData }) => {
                 <br/>
             </div>
         ));
-        // console.log(newBody)
-        // let newBody = body.replace(/\\/g, 'n');
-        // newBody = newBody.replace(/nn/g, br);
-        // console.log(body)
-        // console.log(newBody)
         const tags = tagList.map((tag) => (
             <div key={Math.floor(Math.random() * 10000)}>
                 <h5

@@ -5,6 +5,7 @@
   background-color: #FFFFFF;
   padding: 20px;
   box-shadow: 0 0 10px 0 lightgray;
+  margin: 40px auto;
 }
 
 .main h3 {
@@ -22,6 +23,7 @@
   border-radius: 5px;
   border: none;
   color: #FFFFFF;
+  margin-top: 20px;
 }
 
 .submit:active {
@@ -29,7 +31,7 @@
 }
 
 .inputInput {
-  height: 40px;
+  padding: 10px;
   border: 1px solid;
   border-radius: 5px;
 }
@@ -69,6 +71,16 @@
 
 .buttomErrorTextDisabled {
   display: none;
+}
+
+.footerText {
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+}
+
+.footerText a {
+  margin-left: 10px;
 }
 
 /* Скрываем оригинальный чекбокс */
