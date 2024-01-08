@@ -5,8 +5,14 @@ import { connect } from "react-redux";
 import * as actions from '../../actions'
 
 
-const Header = ({ logOut, authorized }) => {
-    const user = JSON.parse(localStorage.getItem('user'))
+const Header = ({ logOut }) => {
+    const authorized = JSON.parse(localStorage.getItem('authorized'));
+    const user = JSON.parse(localStorage.getItem('user'));
+    const onClick = () => {
+        logOut(false)
+        localStorage.clear();
+        localStorage.setItem('authorized', false)
+    }
     return (
         <div className={classes.main}>
             <Link to='/articles'>
@@ -18,8 +24,8 @@ const Header = ({ logOut, authorized }) => {
                 ?<div className={classes.authorized}>
                     <Link to='/sign-up'> <span className={classes.createArticle}>Create article</span></Link>
                     <p className={classes.userUsername}>{user.userUsername}</p>
-                    <img src={user.userImage} alt=""/>
-                    <Link onClick={logOut} to='/sign-up'><span className={classes.logOut}>Log Out</span></Link>
+                    <Link to='/profile'><img src={user.userImage} alt=""/></Link>
+                    <Link onClick={onClick} to='/sign-in'><span className={classes.logOut}>Log Out</span></Link>
                 </div>
                 :<section>
                     <Link className={classes.signIn} to='/sign-in'>Sign In</Link>

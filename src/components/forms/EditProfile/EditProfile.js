@@ -9,29 +9,36 @@ import {updateUserInfo} from "../../../actions";
 
 const apiRes = new ApiSevice;
 const EditProfile = ({ updateUserInfo }) => {
-
+    const userStorage = JSON.parse(localStorage.getItem('user'));
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const onSubmit = (res) => {
-        // console.log(res)
-        // addUserInfo(
-        //     [
-        //         res.user.username,
-        //         res.user.email,
-        //         res.Password,
-        //         res.user.id,
-        //         res.user.token,
-        //         res.user.image,
-        //         res.user.bio
-        //     ]
-        // );
+    const onSubmit = (data) => {
+        apiRes.updateUser(data.Username, data.EmailAddress, data.Password, userStorage.userToken, data.Avatar)
+            .then((res) => {
+                console.log(res)
+                if(res.error){
+                    alert('Error in email or password');
+                }else{
+                    let user = {
+                        userUsername: res.user.username,
+                        userImage: res.user.image,
+                        userEmail: data.EmailAddress,
+                        userPassword: data.Password,
+                        userToken: res.user.token,
+                        userBio: res.user.bio
+                    };
+                    localStorage.setItem('user', JSON.stringify(user));
+                    updateUserInfo(
+                        [
+                            res.user.username,
+                            data.EmailAddress,
+                            data.Password,
+                            res.user.image,
+                        ]);
+                }
 
-        const userStorage = JSON.parse(localStorage.getItem('user'));
-        let user = {
-            userUsername: res.Username,
-            userImage: userStorage.userImage,
-        }
-        updateUserInfo(user)
-        localStorage.setItem('user', JSON.stringify(user))
+            })
+            .catch((error) => alert(`Error in email or password or: ${error}`));
+
     }
 
 
@@ -53,8 +60,8 @@ const EditProfile = ({ updateUserInfo }) => {
                     <p className={errors.Password ? classes.buttomErrorText : classes.buttomErrorTextDisabled}>Your password must contain from 6 to 40 characters.</p>
 
                     <p>Avatar image (url)</p>
-                    <input className={errors.Username ? classes.inputInputError : classes.inputInput} {...register("Avatar", { required: true })} placeholder='Username'/>
-                    <p className={errors.Username ? classes.buttomErrorText : classes.buttomErrorTextDisabled}>Your username must contain from 3 to 20 characters.</p>
+                    <input className={errors.Avatar ? classes.inputInputError : classes.inputInput} {...register("Avatar", { required: true, pattern: /^(http|https):\/\/[^ "]+(\.jpg|\.jpeg|\.png|\.gif)$/gm })} placeholder='Avatar image'/>
+
                     <input className={classes.submit} type="submit" value='Save'/>
                 </form>
             </div>

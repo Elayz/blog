@@ -1,18 +1,18 @@
 import {Component} from "react";
 
-
 export default class ApiSevice extends Component {
     constructor() {
         super();
-        this.url = 'https://conduit.productionready.io/api/articles?limit=10&offset='
-        this.newUserUrl = 'https://conduit.productionready.io/api/users'
-        this.getExistingUserUrl  = 'https://conduit.productionready.io/api/users/login'
+        this.url = 'https://blog.kata.academy/api/articles?limit=10&offset='
+        this.newUserUrl = 'https://blog.kata.academy/api/users'
+        this.getExistingUserUrl  = 'https://blog.kata.academy/api/users/login'
+        this.updateUserUrl  = 'https://blog.kata.academy/api/user'
     };
 
 
 
 
-    async getExistingUser(email, password) {
+    async server_getExistingUser(email, password) {
         try{
             return ((await fetch(this.getExistingUserUrl, {
                 method: 'POST',
@@ -32,7 +32,7 @@ export default class ApiSevice extends Component {
             throw new Error("trouble in fetch((((", e);
         }
     }
-    async addNewUser(username, email, password) {
+    async server_addNewUser(username, email, password) {
         try{
             return ((await fetch(this.newUserUrl, {
                 method: 'POST',
@@ -53,11 +53,37 @@ export default class ApiSevice extends Component {
             throw new Error("trouble in fetch((((");
         }
     }
+    async server_updateUserData(username, email, password, api_key, Avatar) {
+        try{
+            return ((await fetch(this.updateUserUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${api_key}`,
+                },
+                body: JSON.stringify({
+                    user: {
+                        username: username,
+                        email: email,
+                        password: password,
+                        image: Avatar
+                    }
+                })
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async updateUser(username, email, password, api_key, Avatar) {
+        return await this.server_updateUserData(username, email, password, api_key, Avatar);
+    }
     async newUser(username, email, password) {
-        return await this.addNewUser(username, email, password);
+        return await this.server_addNewUser(username, email, password);
     }
     async existingUser(email, password) {
-        return await this.getExistingUser(email, password);
+        return await this.server_getExistingUser(email, password);
     }
 
 

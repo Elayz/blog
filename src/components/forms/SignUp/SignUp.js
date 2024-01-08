@@ -8,6 +8,7 @@ import {Link, Redirect} from "react-router-dom";
 
 
 const SignUp = ({ authorized, formPassMatchFail, formPassMatchSuccess, formPassMatchError, addUserInfo, userId, userEmail, userUsername, userImage, userPassword, userToken, userBio}) => {
+    const userStorage = JSON.parse(localStorage.getItem('authorized'));
     const apiRes = new ApiSevice;
     let pass1;
     let pass2;
@@ -23,8 +24,14 @@ const SignUp = ({ authorized, formPassMatchFail, formPassMatchSuccess, formPassM
                         let user = {
                             userUsername: res.user.username,
                             userImage: res.user.image,
+                            userEmail: res.user.email,
+                            userPassword: Password,
+                            userToken: res.user.token,
+                            userBio: res.user.bio
+
                         }
                         localStorage.setItem('user', JSON.stringify(user))
+                        localStorage.setItem('authorized', true)
                     }
                 }
             })
@@ -46,7 +53,7 @@ const SignUp = ({ authorized, formPassMatchFail, formPassMatchSuccess, formPassM
 
 
     return (
-        authorized
+        userStorage
             ? <Redirect to='/articles'/>
             : <div className={classes.main}>
                 <h3>Create new account</h3>

@@ -1,4 +1,3 @@
-import {FormPassMatchSuccess} from "./actions";
 
 const initState = {
     dataList: [],
@@ -11,7 +10,7 @@ const initState = {
     userToken: null,
     userBio: null,
     userImage: null,
-    authorized: false,
+    authorized: null,
 }
 
 const reducer = (state = initState, action) => {
@@ -36,7 +35,7 @@ const reducer = (state = initState, action) => {
             return {...state,
                 formPassMatchError: false,
             };
-        case 'userInfo':
+        case 'addUserInfo':
             return {...state,
                 userId: action.payload[3],
                 userEmail: action.payload[1],
@@ -48,8 +47,6 @@ const reducer = (state = initState, action) => {
                 authorized: true,
             };
         case 'logOut':
-            localStorage.clear();
-            localStorage.setItem('authorized', false)
             return {...state,
                 userId: initState.userId,
                 userEmail: initState.userEmail,
@@ -61,8 +58,6 @@ const reducer = (state = initState, action) => {
                 authorized: false,
             };
         case 'updateUserInfo':
-            console.log(action)
-            console.log(state)
             return {...state,
                 userEmail: initState.userEmail,
                 userUsername: action.payload.userUsername,

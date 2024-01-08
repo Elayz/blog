@@ -11,7 +11,7 @@ import SignUp from "../forms/SignUp/SignUp";
 import SignIn from "../forms/SiginIn/SiginIn";
 import EditProfile from "../forms/EditProfile/EditProfile";
 
-const App = ({ dataToState, pageData }) => {
+const App = ({ dataToState, state }) => {
     const apiRes = new ApiSevice;
     window.onload = () => {
         apiRes.getRes()
@@ -22,8 +22,8 @@ const App = ({ dataToState, pageData }) => {
     return (
         <div className={classes.main}>
             <BrowserRouter>
-                <EditProfile></EditProfile>
                 <Header></Header>
+                <Route path='/profile' exact component={EditProfile}></Route>
                 <Route path='/articles' exact component={ItemList}></Route>
                 <Route path='/sign-in' exact component={SignIn}></Route>
                 <Route path='/sign-up' exact component={SignUp}></Route>
@@ -41,6 +41,7 @@ const App = ({ dataToState, pageData }) => {
 const mapStateToProps = (state) => {     //для переменных из стейт
     return {
         pageData: state.pageData,
+        state: state,
     }
 }
 export default connect(mapStateToProps, actions)(App)
