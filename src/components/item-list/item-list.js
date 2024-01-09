@@ -46,3 +46,4 @@ const mapStateToProps = (state) => {     //для переменных из ст
     }
 }
 export default connect(mapStateToProps, actions)(ItemList)
+

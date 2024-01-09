@@ -120,12 +120,39 @@ $titleColor: #1890FF;
 .likes{
   display: flex;
   flex-direction: row;
-  margin-left: 5px;
-  align-items: start;
+  margin: 5px;
+  align-items: center;
 }
 .likesP{
-  margin: 0 20px 40px 5px;
   font-size: 12px;
+}
+.modalFrame{
+  background-color: #FFFFFF;
+  box-shadow: 0 0 5px 0 lightgray;
+  position: absolute;
+  top: 210px;
+  right: 145px;
+  padding: 20px;
+  border-radius: 5px;
+}
+.modalFrame div{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+
+}
+.modalFrame div p:first-child{
+  background-color: #FFFFFF;
+  padding: 3px 5px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+.modalFrame div p:last-child{
+  background-color: #1890FF;
+  padding: 3px 5px;
+  margin: 10px 5px;
+  border-radius: 5px;
 }
 .editDelete{
 

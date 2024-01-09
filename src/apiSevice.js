@@ -103,7 +103,7 @@ export default class ApiSevice extends Component {
                         title: title,
                         description: description,
                         body: body,
-                        tagList: ['tags','tags','tags','tags'],
+                        tagList: tags,
                     }
                 })
 
@@ -141,6 +141,63 @@ export default class ApiSevice extends Component {
             throw new Error("trouble in fetch((((");
         }
     }
+    async server_deleteAnArticle(api_key, slug) {
+        try{
+            return ((await fetch(`${this.favor}/${slug}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${api_key}`,
+                }
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async server_getExistingArticle(slug) {
+        try{
+            return ((await fetch(`${this.createArticle}/${slug}`)).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async server_updateAnArticle(title, description, body, tags, api_key, slug) {
+        try{
+            return ((await fetch(`${this.createArticle}/${slug}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${api_key}`,
+                },
+                body: JSON.stringify({
+                    article: {
+                        title: title,
+                        description: description,
+                        body: body,
+                        tagList: tags,
+                    }
+                })
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+
+
+
+    async deleteAnArticle(api_key, slug) {
+        return await this.server_deleteAnArticle(api_key, slug);
+    }
+    async updateAnArticle(title, description, body, tags, api_key, slug) {
+        return await this.server_updateAnArticle(title, description, body, tags, api_key, slug);
+    }
+    async getExistingArticle(slug) {
+        return await this.server_getExistingArticle(slug);
+    }
     async favorArticle(api_key, slug) {
         return await this.server_favorArticle(api_key, slug);
     }
@@ -159,7 +216,6 @@ export default class ApiSevice extends Component {
     async existingUser(email, password) {
         return await this.server_getExistingUser(email, password);
     }
-
     async getRes(page = 1, api_key) {
         return await this.server_getInfo(this.url, page, api_key);
     }

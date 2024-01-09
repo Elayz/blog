@@ -3,10 +3,40 @@ import classes from './item-list-item-open.module.scss'
 import {connect} from "react-redux";
 import * as actions from '../../actions'
 import logo from '../item-list-item/imgs/Vector.svg';
+import ApiSevice from "../../apiSevice";
+import {editArticle, tapDel} from "../../actions";
+import {Link} from "react-router-dom";
 
-const ItemListItemOpen = ({ pageData }) => {
+const apiRes = new ApiSevice();
+const user = JSON.parse(localStorage.getItem('user'));
+
+const ItemListItemOpen = ({ tapDelete, tapDel, dataToState, pageData, userUsername, editArticle, dataForEditArticle }) => {
+    const deleteArticle = () => {
+        apiRes.deleteAnArticle(user.userToken, pageData.slug)
+            .then((res) => {
+                apiRes.getRes(1, user.userToken)
+                    .then((res) => {
+                        tapDel()
+                        dataToState(res)
+                    })
+
+            })
+            .catch((er)=>{
+                apiRes.getRes(1, user.userToken)
+                    .then((res) => {
+                        tapDel()
+                        dataToState(res)
+                    })
+            })
+    }
+    const tapOnDelete = () =>{
+        tapDel()
+    }
     if (pageData !== null){
-        const { body, author, description, favoritesCount, tagList, title, createdAt } = pageData
+        setTimeout(() => {
+            editArticle(pageData)
+        }, 0)
+        const { body, author, description, favoritesCount, tagList, title } = pageData
         const newBody = body.split('\\n')
         const elements = newBody.map((item) => (
             <div
@@ -50,10 +80,22 @@ const ItemListItemOpen = ({ pageData }) => {
                             </div>
                             <img className={classes.authorImage} src={author.image} alt="aGde"/>
                         </div>
-                        <div className={classes.editDelete}>
-                            <span className={classes.delete}>Delete</span>
-                            <span className={classes.edit}>Edit</span>
-                        </div>
+                        {pageData.author.username === user.userUsername
+                            ?<div className={classes.editDelete}>
+                                {tapDelete
+                                    ?<div className={classes.modalFrame}>
+                                    <span>Are you sure to delete this article?</span>
+                                    <div>
+                                        <p onClick={tapOnDelete}>No</p>
+                                        <p onClick={deleteArticle}>Yes</p>
+                                    </div>
+                                </div>
+                                :<div></div>}
+                                <span onClick={tapOnDelete} className={classes.delete}>Delete</span>
+                                <Link to={`/articles/${pageData.slug}/edit`}><span className={classes.edit}>Edit</span></Link>
+                            </div>
+                            :<div></div>
+                        }
 
                     </div>
                 </div>
@@ -66,6 +108,9 @@ const ItemListItemOpen = ({ pageData }) => {
 const mapStateToProps = (state) => {     //для переменных из стейт
     return {
         pageData: state.pageData,
+        userUsername: state.userUsername,
+        dataForEditArticle: state.dataForEditArticle,
+        tapDelete: state.tapDelete
     }
 }
 export default connect(mapStateToProps, actions)(ItemListItemOpen)

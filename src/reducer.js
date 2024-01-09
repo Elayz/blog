@@ -11,10 +11,40 @@ const initState = {
     userBio: null,
     userImage: null,
     authorized: null,
+    newArticleTagInputValue: '',
+    tagList: [],
+    dataForEditArticle: null,
+    tapDelete: false,
 }
 
 const reducer = (state = initState, action) => {
     switch (action.type) {
+        case 'tapDel':
+            return {...state,
+                tapDelete: !state.tapDelete,
+            };
+        case 'deleteTagFromTagList':
+            let newTagList = state.tagList
+            newTagList.splice(action.payload, 1)
+            return {...state,
+                tagList: newTagList,
+            };
+        case 'editArticleTagList':
+            return {...state,
+                tagList: action.payload,
+            };
+        case 'editArticle':
+            return {...state,
+                dataForEditArticle: action.payload,
+            };
+        case 'addToTagList':
+            return {...state,
+                tagList: [...state.tagList, state.newArticleTagInputValue],
+            };
+        case 'articleTagInputValue':
+            return {...state,
+                newArticleTagInputValue: action.payload,
+            };
         case 'dataToState':
             return {...state,
                 dataList: action.payload.articles,

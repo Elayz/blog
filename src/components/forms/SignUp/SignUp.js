@@ -15,7 +15,6 @@ const SignUp = ({ authorized, formPassMatchFail, formPassMatchSuccess, formPassM
     const newUserFoo = ({ Username, EmailAddress, Password }) => {
         apiRes.newUser(Username, EmailAddress, Password)
             .then((res) => {
-                console.log(res)
                 if (res.user === undefined) {
                     alert("Sorry, but this username or email is already registered")
                 } else {

@@ -3,15 +3,19 @@ import classes from './header.module.scss'
 import  { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from '../../actions'
+import {tapDel} from "../../actions";
 
 
-const Header = ({ logOut }) => {
+const Header = ({ tapDel, editArticleTagList, logOut }) => {
     const authorized = JSON.parse(localStorage.getItem('authorized'));
     const user = JSON.parse(localStorage.getItem('user'));
     const onClick = () => {
         logOut(false)
         localStorage.clear();
         localStorage.setItem('authorized', false)
+    }
+    const clearTags = () => {
+        editArticleTagList([]);
     }
     return (
         <div className={classes.main}>
@@ -22,7 +26,7 @@ const Header = ({ logOut }) => {
             </Link>
             {authorized
                 ?<div className={classes.authorized}>
-                    <Link to='/create-article'> <span className={classes.createArticle}>Create article</span></Link>
+                    <Link onClick={clearTags} to='/create-article'> <span className={classes.createArticle}>Create article</span></Link>
                     <p className={classes.userUsername}>{user.userUsername}</p>
                     <Link to='/profile'><img src={user.userImage} alt=""/></Link>
                     <Link onClick={onClick} to='/sign-in'><span className={classes.logOut}>Log Out</span></Link>

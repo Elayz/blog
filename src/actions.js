@@ -6,6 +6,12 @@ export const formPassMatchFail  = (payload) => {return {type: 'FormPassMatchFail
 export const addUserInfo  = (payload) => {return {type: 'addUserInfo', payload}};
 export const logOut  = (payload) => {return {type: 'logOut', payload}};
 export const updateUserInfo  = (payload) => {return {type: 'updateUserInfo', payload}};
+export const articleTagInputValue  = (payload) => {return {type: 'articleTagInputValue', payload}};
+export const addToTagList  = (payload) => {return {type: 'addToTagList', payload}};
+export const editArticle  = (payload) => {return {type: 'editArticle', payload}};
+export const editArticleTagList  = (payload) => {return {type: 'editArticleTagList', payload}};
+export const deleteTagFromTagList  = (payload) => {return {type: 'deleteTagFromTagList', payload}};
+export const tapDel  = (payload) => {return {type: 'tapDel', payload}};
 
 
 

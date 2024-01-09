@@ -7,18 +7,28 @@ import logo from './imgs/Vector.svg';
 import likeLogo from './imgs/Heart_corazón 1.svg';
 import ApiSevice from "../../apiSevice";
 
-const apiServ = new ApiSevice();
+const apiRes = new ApiSevice();
 const user = JSON.parse(localStorage.getItem('user'));
-const ItemListItem = ({ pageDataFoo, item }) => {
+const ItemListItem = ({ pageDataFoo, item, dataToState }) => {
     const { favorited, index, author, description, favoritesCount, tagList, title, createdAt, slug } = item;
 
     const onFavor = () => {
-        apiServ.favorArticle(user.userToken, slug)
-            .then((res) => console.log(res))
+        apiRes.favorArticle(user.userToken, slug)
+            .then((res) => {
+                apiRes.getRes(1, user.userToken)
+                    .then((res) => {
+                        dataToState(res)
+                    })
+            })
     };
     const onUnFavor = () => {
-        apiServ.unFavorArticle(user.userToken, slug)
-            .then((res) => console.log(res))
+        apiRes.unFavorArticle(user.userToken, slug)
+            .then((res) => {
+                apiRes.getRes(1, user.userToken)
+                    .then((res) => {
+                        dataToState(res)
+                    })
+            })
     }
     function formatDate(isoDate) {
         const date = new Date(isoDate);

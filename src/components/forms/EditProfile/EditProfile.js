@@ -15,7 +15,6 @@ const EditProfile = ({ updateUserInfo }) => {
         // console.log(data)
         apiRes.updateUser(data.Username, data.EmailAddress, data.Password, userStorage.userToken, data.Avatar)
             .then((res) => {
-                console.log(res)
                 if(res.error){
                     alert('Error in email or password');
                 }else{
