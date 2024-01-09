@@ -7,11 +7,25 @@ export default class ApiSevice extends Component {
         this.newUserUrl = 'https://blog.kata.academy/api/users'
         this.getExistingUserUrl  = 'https://blog.kata.academy/api/users/login'
         this.updateUserUrl  = 'https://blog.kata.academy/api/user'
+        this.createArticle  = 'https://blog.kata.academy/api/articles'
+        this.favor  = 'https://blog.kata.academy/api/articles'
     };
 
 
 
-
+    async server_getInfo(url, page, api_key) {
+        try{
+            return (await fetch(url+page, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${api_key}`,
+                }
+            })).json();
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
     async server_getExistingUser(email, password) {
         try{
             return ((await fetch(this.getExistingUserUrl, {
@@ -76,6 +90,66 @@ export default class ApiSevice extends Component {
             throw new Error("trouble in fetch((((");
         }
     }
+    async server_createNewArticle(title, description, body, tags, api_key) {
+        try{
+            return ((await fetch(this.createArticle, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${api_key}`,
+                },
+                body: JSON.stringify({
+                    article: {
+                        title: title,
+                        description: description,
+                        body: body,
+                        tagList: ['tags','tags','tags','tags'],
+                    }
+                })
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async server_favorArticle(api_key, slug) {
+        try{
+            return ((await fetch(`${this.favor}/${slug}/favorite`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${api_key}`,
+                }
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async server_UnfavorArticle(api_key, slug) {
+        try{
+            return ((await fetch(`${this.favor}/${slug}/favorite`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${api_key}`,
+                }
+
+            })).json());
+        }
+        catch (e) {
+            throw new Error("trouble in fetch((((");
+        }
+    }
+    async favorArticle(api_key, slug) {
+        return await this.server_favorArticle(api_key, slug);
+    }
+    async unFavorArticle(api_key, slug) {
+        return await this.server_UnfavorArticle(api_key, slug);
+    }
+    async createNewArticle(title, description, body, tags, api_key) {
+        return await this.server_createNewArticle(title, description, body, tags, api_key);
+    }
     async updateUser(username, email, password, api_key, Avatar) {
         return await this.server_updateUserData(username, email, password, api_key, Avatar);
     }
@@ -86,21 +160,7 @@ export default class ApiSevice extends Component {
         return await this.server_getExistingUser(email, password);
     }
 
-
-
-
-
-
-    async getInfo(url, page) {
-        try{
-            return (await fetch(url+page)).json();
-        }
-        catch (e) {
-            throw new Error("trouble in fetch((((");
-        }
-    }
-
-    async getRes(page = 1) {
-        return await this.getInfo(this.url, page);
+    async getRes(page = 1, api_key) {
+        return await this.server_getInfo(this.url, page, api_key);
     }
 }

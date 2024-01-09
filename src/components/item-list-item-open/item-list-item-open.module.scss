@@ -58,7 +58,7 @@ $titleColor: #1890FF;
 }
 .likes{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   margin: 5px;
 }
@@ -67,11 +67,13 @@ $titleColor: #1890FF;
 }
 .userInfoZone{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-left: 20px;
   width: 40%;
-  justify-content: end;
-
+  align-items: end;
+}
+.nameZone{
+  display: flex;
 }
 .authorName{
   margin-top: 0;
@@ -124,4 +126,21 @@ $titleColor: #1890FF;
 .likesP{
   margin: 0 20px 40px 5px;
   font-size: 12px;
+}
+.editDelete{
+
+}
+.edit{
+  border: 1px solid #52C41A;
+  border-radius: 5px;
+  padding: 5px;
+  color: #52C41A;
+  margin: 0 10px;
+}
+.delete{
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+  padding: 5px;
+  color: #F5222D;
+  margin: 0 10px;
 }

@@ -43,11 +43,18 @@ const ItemListItemOpen = ({ pageData }) => {
                         </p>
                     </div>
                     <div className={classes.userInfoZone}>
-                        <div>
-                            <h4 className={classes.authorName}>{author.username}</h4>
-                            <h5 className={classes.authorDate}>March 5, 2020</h5>
+                        <div className={classes.nameZone}>
+                            <div>
+                                <h4 className={classes.authorName}>{author.username}</h4>
+                                <h5 className={classes.authorDate}>March 5, 2020</h5>
+                            </div>
+                            <img className={classes.authorImage} src={author.image} alt="aGde"/>
                         </div>
-                        <img className={classes.authorImage} src={author.image} alt="aGde"/>
+                        <div className={classes.editDelete}>
+                            <span className={classes.delete}>Delete</span>
+                            <span className={classes.edit}>Edit</span>
+                        </div>
+
                     </div>
                 </div>
                 <span>{elements}</span>

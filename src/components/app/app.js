@@ -10,11 +10,13 @@ import ItemListItemOpen from "../item-list-item-open/item-list-item-open";
 import SignUp from "../forms/SignUp/SignUp";
 import SignIn from "../forms/SiginIn/SiginIn";
 import EditProfile from "../forms/EditProfile/EditProfile";
+import NewArticle from "../forms/newArticle/newArticle";
 
+const user = JSON.parse(localStorage.getItem('user'));
 const App = ({ dataToState, state }) => {
     const apiRes = new ApiSevice;
     window.onload = () => {
-        apiRes.getRes()
+        apiRes.getRes(1, user.userToken)
             .then((res) => {
                 dataToState(res)
             })
@@ -23,6 +25,7 @@ const App = ({ dataToState, state }) => {
         <div className={classes.main}>
             <BrowserRouter>
                 <Header></Header>
+                <Route path='/create-article' exact component={NewArticle}></Route>
                 <Route path='/profile' exact component={EditProfile}></Route>
                 <Route path='/articles' exact component={ItemList}></Route>
                 <Route path='/sign-in' exact component={SignIn}></Route>

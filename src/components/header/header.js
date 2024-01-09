@@ -22,7 +22,7 @@ const Header = ({ logOut }) => {
             </Link>
             {authorized
                 ?<div className={classes.authorized}>
-                    <Link to='/sign-up'> <span className={classes.createArticle}>Create article</span></Link>
+                    <Link to='/create-article'> <span className={classes.createArticle}>Create article</span></Link>
                     <p className={classes.userUsername}>{user.userUsername}</p>
                     <Link to='/profile'><img src={user.userImage} alt=""/></Link>
                     <Link onClick={onClick} to='/sign-in'><span className={classes.logOut}>Log Out</span></Link>

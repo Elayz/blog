@@ -12,6 +12,7 @@ const EditProfile = ({ updateUserInfo }) => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = (data) => {
+        // console.log(data)
         apiRes.updateUser(data.Username, data.EmailAddress, data.Password, userStorage.userToken, data.Avatar)
             .then((res) => {
                 console.log(res)

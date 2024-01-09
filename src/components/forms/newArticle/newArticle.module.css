@@ -1,0 +1,141 @@
+@charset "UTF-8";
+.main {
+  min-height: 250px;
+  width: 938px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 lightgray;
+  margin: 40px auto;
+}
+
+.main h3 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit {
+  background-color: #1890FF;
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+
+.submit:active {
+  background-color: #1870FF;
+}
+
+.inputInput {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.texArea {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  height: 170px;
+  resize: none;
+}
+
+.form p {
+  margin: 5px 0;
+}
+
+.form hr {
+  margin: 20px 0;
+  height: 0;
+}
+
+.inputInputError {
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.texAreaError {
+  height: 170px;
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+}
+
+.buttomErrorText {
+  color: #F5222D;
+}
+
+.buttomErrorTextDisabled {
+  display: none;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.footerText {
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+}
+
+.footerText a {
+  margin-left: 10px;
+}
+
+.delete {
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+  padding: 5px 20px;
+  color: #F5222D;
+  margin: 0 10px;
+  background-color: #FFFFFF;
+}
+
+.add {
+  border: 1px solid #1890FF;
+  border-radius: 5px;
+  padding: 5px 20px;
+  color: #1890FF;
+  background-color: #FFFFFF;
+}
+
+/* Скрываем оригинальный чекбокс */
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Создаем стилизованный флажок */
+.styled-checkbox + label:before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid lightgray; /* Цвет рамки */
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+/* Стили для отмеченного состояния */
+.styled-checkbox:checked + label:before {
+  content: "✔"; /* Unicode галочка */
+  text-align: center;
+  border: 1px solid #1890FF;
+  width: 14px;
+  height: 14px;
+  line-height: 16px;
+  background-color: #1890FF; /* Цвет заливки */
+  color: #fff; /* Цвет галочки */
+}
+
+/*# sourceMappingURL=newArticle.module.css.map */
